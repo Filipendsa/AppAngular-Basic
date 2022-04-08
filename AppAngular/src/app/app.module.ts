@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Pipe, PipeTransform } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 
 import { registerLocaleData } from '@angular/common'; 
 import localePt from '@angular/common/locales/pt';
@@ -44,3 +46,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+@Pipe({ name: 'CustomeCurrency' })
+export class CustomCurrencyPipe implements PipeTransform {
+
+    constructor(private currencyPipe: CurrencyPipe) { }
+    transform(value: any, currencyCode?: string, display?: string | boolean, digitsInfo?: string, locale?: string): string {
+        if (value != null)
+            return this.currencyPipe.transform(value, currencyCode, display, digitsInfo, locale);
+        return this.currencyPipe.transform(0, currencyCode, display, locale).split('0.00')[0];
+    }
+}
