@@ -11,9 +11,6 @@ import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './navegacao/menu/menu.component';
-import { HomeComponent } from './navegacao/home/home.component';
-import { FooterComponent } from './navegacao/footer/footer.component';
 import { SobreComponent } from './institucional/sobre/sobre.component';
 import { ContatoComponent } from './institucional/contato/contato.component';
 import { rootRouterConfig } from './app.routs';
@@ -21,13 +18,11 @@ import { DataBindingComponent } from './demos/data-binding/data-binding.componen
 import { ProdutoService } from './produtos/produtos.service';
 import { ListaProdutoComponent } from './produtos/lista-produto/lista-produto.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NavegacaoModule } from './navegacao/navegacao.modules';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    HomeComponent,
-    FooterComponent,
     SobreComponent,
     ContatoComponent,
     DataBindingComponent,
@@ -36,6 +31,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
+    NavegacaoModule,
     HttpClientModule,
     [RouterModule.forRoot(rootRouterConfig, { useHash:false})]
   ],
